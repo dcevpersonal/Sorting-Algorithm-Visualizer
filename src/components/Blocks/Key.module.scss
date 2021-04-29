@@ -1,0 +1,8 @@
+.Key {
+    width: 3px;
+    transition: height 0.5s linear;
+    background: firebrick;
+    &:active {
+        background: chartreuse;
+    }
+}

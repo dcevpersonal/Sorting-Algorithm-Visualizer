@@ -1,0 +1,13 @@
+.Grid {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+#Key {
+    margin-left: 5px;
+    &:nth-child(1) {
+        margin: 0;
+    }
+}
