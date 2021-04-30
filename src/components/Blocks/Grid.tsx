@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Style from "./Grid.module.scss";
 import Key from "./Key";
 
@@ -22,9 +22,9 @@ function Grid() {
   const startSorting = () => {
     setAnim(() => {
       const arr = keys.slice(0);
-
       return quickSortIterative(arr);
     });
+    setIsSorted(true);
   };
 
   const startAnimate = () => {
@@ -58,7 +58,7 @@ function Grid() {
 
   const [keysSize, setKeysSize] = useState(150);
 
-  const [keys, setKeys] = useState(() => {
+  const [keys] = useState(() => {
     return generateArray();
   });
 
@@ -68,7 +68,7 @@ function Grid() {
   });
 
   const [anim, setAnim] = useState(() => {
-    return { swap: [], section: [[0, 0]] };
+    return { swap: [], section: [] };
   });
 
   const animRef = useRef(anim);
@@ -82,8 +82,13 @@ function Grid() {
 
   const [currentSection, setCurrentSection] = useState([0, 0]);
 
-  const currentSectionRef = useRef(currentSection);
-  currentSectionRef.current = currentSection;
+  const [isSorted, setIsSorted] = useState(false);
+
+  useEffect(() => {
+    if (isSorted) {
+      startAnimate();
+    }
+  }, [isSorted]);
 
   return (
     <div className={Style.Grid}>
