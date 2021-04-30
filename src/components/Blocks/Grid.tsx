@@ -38,6 +38,9 @@ function Grid() {
       setCurrentAnim(() => {
         return animRef.current.swap[s];
       });
+      setCurrentSection(() => {
+        return animRef.current.section[s];
+      });
 
       setKeysModif((v) => {
         const array = v.slice(0);
@@ -45,6 +48,7 @@ function Grid() {
         array[animRef.current.swap[s][2]] = animRef.current.swap[s][3];
         return array;
       });
+
       frame = frame + 1;
       return frame;
     });
@@ -64,7 +68,7 @@ function Grid() {
   });
 
   const [anim, setAnim] = useState(() => {
-    return { swap: [] };
+    return { swap: [], section: [[0, 0]] };
   });
 
   const animRef = useRef(anim);
@@ -76,7 +80,10 @@ function Grid() {
   const currentFrameRef = useRef(currentFrame);
   currentFrameRef.current = currentFrame;
 
-  console.log(anim);
+  const [currentSection, setCurrentSection] = useState([0, 0]);
+
+  const currentSectionRef = useRef(currentSection);
+  currentSectionRef.current = currentSection;
 
   return (
     <div className={Style.Grid}>
@@ -91,6 +98,12 @@ function Grid() {
                 : i === currentAnim[2]
                 ? currentAnim[3]
                 : keysModif[i]
+            }
+            selected={
+              i === currentAnim[0] || i === currentAnim[2] ? true : false
+            }
+            section={
+              i >= currentSection[0] && i <= currentSection[1] ? true : false
             }
           />
         );

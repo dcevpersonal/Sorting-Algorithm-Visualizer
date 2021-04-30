@@ -1,5 +1,6 @@
 interface animations {
   swap: Array<Array<number>>;
+  section: Array<Array<number>>;
 }
 
 export const partition = (
@@ -12,19 +13,20 @@ export const partition = (
   let pivotPos = start;
 
   for (let i = start; i < end; i++) {
+    animations.section.push([start, end]);
+
     if (arr[i] < pivotValue) {
-      if (arr[i] !== arr[pivotPos]) {
-        animations.swap.push([i, arr[pivotPos], pivotPos, arr[i]]);
-      }
+      animations.swap.push([i, arr[pivotPos], pivotPos, arr[i]]);
 
       [arr[i], arr[pivotPos]] = [arr[pivotPos], arr[i]];
 
       pivotPos++;
+    } else {
+      animations.swap.push([NaN, NaN]);
     }
   }
-  if (arr[end] !== arr[pivotPos]) {
-    animations.swap.push([end, arr[pivotPos], pivotPos, arr[end]]);
-  }
+  animations.section.push([start, end]);
+  animations.swap.push([end, arr[pivotPos], pivotPos, arr[end]]);
 
   [arr[end], arr[pivotPos]] = [arr[pivotPos], arr[end]];
 
@@ -38,6 +40,7 @@ export const quickSortRecursive = (
 ) => {
   const animations = {
     swap: [],
+    section: [],
   };
 
   if (start >= end) {
@@ -56,6 +59,7 @@ export const quickSortIterative = (arr: Array<number>) => {
 
   const animations = {
     swap: [],
+    section: [],
   };
 
   while (arrStack[arrStack.length - 1] >= 0) {

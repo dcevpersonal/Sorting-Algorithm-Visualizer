@@ -1,8 +1,5 @@
 .Key {
     width: 3px;
-    transition: height 0.5s linear;
-    background: firebrick;
-    &:active {
-        background: chartreuse;
-    }
+    transition: all 0.01s linear;
+    // transition-property: height, background;
 }
