@@ -4,6 +4,8 @@ import Key from "./Key";
 
 import { quickSortIterative } from "../Algorithms/QuickSort";
 
+import { mergeSort } from "../Algorithms/MergeSort";
+
 function Grid() {
   const generateArray = () => {
     const array: Array<number> = [];
@@ -20,10 +22,16 @@ function Grid() {
   };
 
   const startSorting = () => {
+    // setAnim(() => {
+    //   const arr = keys.slice(0);
+    //   return quickSortIterative(arr);
+    // });
+
     setAnim(() => {
       const arr = keys.slice(0);
-      return quickSortIterative(arr);
+      return mergeSort(arr);
     });
+
     setIsSorted(true);
   };
 
@@ -89,7 +97,6 @@ function Grid() {
       startAnimate();
     }
   }, [isSorted]);
-
   return (
     <div className={Style.Grid}>
       {keys.map((k, i) => {
@@ -109,6 +116,7 @@ function Grid() {
             }
             section={
               i >= currentSection[0] && i <= currentSection[1] ? true : false
+              // false
             }
           />
         );
