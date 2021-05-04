@@ -57,7 +57,7 @@ export const quickSortIterative = (arr: Array<number>) => {
   let partitionInd = 0;
   const arrStack = [0, arr.length - 1];
 
-  const animations = {
+  const animations: animations = {
     swap: [],
     section: [],
   };

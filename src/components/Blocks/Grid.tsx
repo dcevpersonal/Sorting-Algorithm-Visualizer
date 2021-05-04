@@ -3,8 +3,13 @@ import Style from "./Grid.module.scss";
 import Key from "./Key";
 
 import { quickSortIterative } from "../Algorithms/QuickSort";
-
+import { heapSort } from "../Algorithms/HeapSort";
 import { mergeSort } from "../Algorithms/MergeSort";
+
+interface animations {
+  swap: Array<Array<number>>;
+  section: Array<Array<number>>;
+}
 
 function Grid() {
   const generateArray = () => {
@@ -22,15 +27,28 @@ function Grid() {
   };
 
   const startSorting = () => {
-    // setAnim(() => {
-    //   const arr = keys.slice(0);
-    //   return quickSortIterative(arr);
-    // });
-
     setAnim(() => {
       const arr = keys.slice(0);
-      return mergeSort(arr);
+      const animations = quickSortIterative(arr);
+      animations.swap.push([NaN, NaN, NaN, NaN]);
+      animations.section.push([NaN, NaN]);
+      return animations;
     });
+
+    // setAnim(() => {
+    //   const arr = keys.slice(0);
+    //   const animations = mergeSort(arr);
+    //   animations.swap.push([NaN, NaN, NaN, NaN]);
+    //   animations.section.push([NaN, NaN]);
+    //   return animations;
+    // });
+    // setAnim(() => {
+    //   const arr = keys.slice(0);
+    //   const animations = heapSort(arr);
+    //   animations.swap.push([NaN, NaN, NaN, NaN]);
+    //   animations.section.push([NaN, NaN]);
+    //   return animations;
+    // });
 
     setIsSorted(true);
   };
@@ -76,7 +94,11 @@ function Grid() {
   });
 
   const [anim, setAnim] = useState(() => {
-    return { swap: [], section: [] };
+    const animations: animations = {
+      swap: [],
+      section: [],
+    };
+    return animations;
   });
 
   const animRef = useRef(anim);
@@ -95,6 +117,8 @@ function Grid() {
   useEffect(() => {
     if (isSorted) {
       startAnimate();
+      console.log(anim.section);
+      console.log(anim.swap);
     }
   }, [isSorted]);
   return (

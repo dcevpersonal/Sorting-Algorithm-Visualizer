@@ -108,7 +108,7 @@ export const mergeSortAlg = (
 
 export const mergeSort = (array: Array<number>) => {
   const copyArray = array.slice(0);
-  const animations = {
+  const animations: animations = {
     swap: [],
     section: [],
   };
