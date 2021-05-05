@@ -5,6 +5,7 @@ import Key from "./Key";
 import { quickSortIterative } from "../Algorithms/QuickSort";
 import { heapSort } from "../Algorithms/HeapSort";
 import { mergeSort } from "../Algorithms/MergeSort";
+import { bubbleSort } from "../Algorithms/BubbleSort";
 
 interface animations {
   swap: Array<Array<number>>;
@@ -42,9 +43,16 @@ function Grid() {
     //   animations.section.push([NaN, NaN]);
     //   return animations;
     // });
+    // setAnim(() => {
+    //   const arr = keys.slice(0);
+    //   const animations = heapSort(arr);
+    //   animations.swap.push([NaN, NaN, NaN, NaN]);
+    //   animations.section.push([NaN, NaN]);
+    //   return animations;
+    // });
     setAnim(() => {
       const arr = keys.slice(0);
-      const animations = heapSort(arr);
+      const animations = bubbleSort(arr);
       animations.swap.push([NaN, NaN, NaN, NaN]);
       animations.section.push([NaN, NaN]);
       return animations;
