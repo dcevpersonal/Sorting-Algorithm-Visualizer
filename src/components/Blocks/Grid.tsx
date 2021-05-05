@@ -27,13 +27,13 @@ function Grid() {
   };
 
   const startSorting = () => {
-    setAnim(() => {
-      const arr = keys.slice(0);
-      const animations = quickSortIterative(arr);
-      animations.swap.push([NaN, NaN, NaN, NaN]);
-      animations.section.push([NaN, NaN]);
-      return animations;
-    });
+    // setAnim(() => {
+    //   const arr = keys.slice(0);
+    //   const animations = quickSortIterative(arr);
+    //   animations.swap.push([NaN, NaN, NaN, NaN]);
+    //   animations.section.push([NaN, NaN]);
+    //   return animations;
+    // });
 
     // setAnim(() => {
     //   const arr = keys.slice(0);
@@ -42,13 +42,13 @@ function Grid() {
     //   animations.section.push([NaN, NaN]);
     //   return animations;
     // });
-    // setAnim(() => {
-    //   const arr = keys.slice(0);
-    //   const animations = heapSort(arr);
-    //   animations.swap.push([NaN, NaN, NaN, NaN]);
-    //   animations.section.push([NaN, NaN]);
-    //   return animations;
-    // });
+    setAnim(() => {
+      const arr = keys.slice(0);
+      const animations = heapSort(arr);
+      animations.swap.push([NaN, NaN, NaN, NaN]);
+      animations.section.push([NaN, NaN]);
+      return animations;
+    });
 
     setIsSorted(true);
   };
