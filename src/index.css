@@ -1,6 +1,10 @@
 *,
 html,
 body {
+  --Black-1: #121212;
+  --Black-2: rgba(255, 255, 255, 0.16);
+  --Blue-1: #2194f3;
+  --Red-1: #f44336;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -10,4 +14,5 @@ html,
 body {
   width: 100%;
   height: 100%;
+  background: var(--Black-1);
 }

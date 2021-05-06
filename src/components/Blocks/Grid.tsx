@@ -28,35 +28,35 @@ function Grid() {
   };
 
   const startSorting = () => {
-    // setAnim(() => {
-    //   const arr = keys.slice(0);
-    //   const animations = quickSortIterative(arr);
-    //   animations.swap.push([NaN, NaN, NaN, NaN]);
-    //   animations.section.push([NaN, NaN]);
-    //   return animations;
-    // });
+    setAnim(() => {
+      const arr = keys.slice(0);
+      const animations = quickSortIterative(arr);
+      animations.swap.push([NaN, NaN, NaN, NaN]);
+      animations.section.push([0, keysSize]);
+      return animations;
+    });
 
     // setAnim(() => {
     //   const arr = keys.slice(0);
     //   const animations = mergeSort(arr);
     //   animations.swap.push([NaN, NaN, NaN, NaN]);
-    //   animations.section.push([NaN, NaN]);
+    //   animations.section.push([0, keysSize]);
     //   return animations;
     // });
     // setAnim(() => {
     //   const arr = keys.slice(0);
     //   const animations = heapSort(arr);
     //   animations.swap.push([NaN, NaN, NaN, NaN]);
-    //   animations.section.push([NaN, NaN]);
+    //   animations.section.push([0, keysSize]);
     //   return animations;
     // });
-    setAnim(() => {
-      const arr = keys.slice(0);
-      const animations = bubbleSort(arr);
-      animations.swap.push([NaN, NaN, NaN, NaN]);
-      animations.section.push([NaN, NaN]);
-      return animations;
-    });
+    // setAnim(() => {
+    //   const arr = keys.slice(0);
+    //   const animations = bubbleSort(arr);
+    //   animations.swap.push([NaN, NaN, NaN, NaN]);
+    //   animations.section.push([0, keysSize]);
+    //   return animations;
+    // });
 
     setIsSorted(true);
   };
@@ -90,7 +90,7 @@ function Grid() {
     setTimeout(startAnimate, 10);
   };
 
-  const [keysSize, setKeysSize] = useState(150);
+  const [keysSize, setKeysSize] = useState(100);
 
   const [keys] = useState(() => {
     return generateArray();
@@ -118,7 +118,7 @@ function Grid() {
   const currentFrameRef = useRef(currentFrame);
   currentFrameRef.current = currentFrame;
 
-  const [currentSection, setCurrentSection] = useState([0, 0]);
+  const [currentSection, setCurrentSection] = useState([0, keysSize]);
 
   const [isSorted, setIsSorted] = useState(false);
 
