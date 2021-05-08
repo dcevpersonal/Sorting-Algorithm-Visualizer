@@ -1,7 +1,9 @@
 .App {
   display: flex;
+  flex-flow: column;
+
   width: 100vw;
-  height: fit-content;
+  height: 100vh;
 }
 
 @media screen and (max-width: 1365px) {

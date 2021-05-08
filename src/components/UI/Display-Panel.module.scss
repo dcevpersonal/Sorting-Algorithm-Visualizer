@@ -1,14 +1,15 @@
 .DisplayPanel {
     display: flex;
-    height: 80px;
-    background: var(--Black-3);
+    height: 100px;
+    width: 100%;
     align-items: center;
     justify-content: center;
 }
 
 @media screen and (max-width: 1365px) {
     .DisplayPanel {
-        width: 80px;
-        height: 100%;
+        width: 100px;
+        height: fit-content;
+        flex-grow: 1;
     }
 }
