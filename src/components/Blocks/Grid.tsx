@@ -129,6 +129,7 @@ function Grid() {
       console.log(anim.swap);
     }
   }, [isSorted]);
+
   return (
     <div className={Style.Grid}>
       {keys.map((k, i) => {

@@ -3,4 +3,12 @@
     transition: height 0.1s linear;
     background: var(--Black-2);
     // transition-property: height, background;
+
+    &__Selected {
+        background: var(--Red-1);
+    }
+
+    &__Section {
+        background: var(--Blue-1);
+    }
 }

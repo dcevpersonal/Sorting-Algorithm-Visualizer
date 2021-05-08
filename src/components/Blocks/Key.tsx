@@ -11,14 +11,15 @@ interface props {
 function Key(props: props) {
   return (
     <div
-      className={Style.Key}
+      className={
+        props.selected
+          ? `${Style.Key} ${Style.Key__Selected}`
+          : props.section
+          ? `${Style.Key} ${Style.Key__Section}`
+          : Style.Key
+      }
       style={{
         height: `${props.size * 5}px`,
-        background: props.selected
-          ? "var(--Red-1)"
-          : props.section
-          ? "var(--Blue-1)"
-          : "var(--Black-2)",
       }}
       id={props.iden}
     ></div>

@@ -1,0 +1,142 @@
+$numOfElements: 4;
+
+.Range {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__InputContainer {
+        display: flex;
+        align-items: center;
+
+        &__Circle {
+            position: relative;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            background: #272727;
+            appearance: none;
+            border: 3px solid var(--Blue-1);
+            border-radius: 50%;
+            margin-left: 150px;
+            transition: transform 0.3s ease-out;
+            z-index: 2;
+            &:nth-of-type(1) {
+                margin-left: 0;
+            }
+            &:active {
+                transform: scale(0.6);
+            }
+            &:hover {
+                transform: scale(1.4);
+            }
+            &:checked {
+                @for $i from 1 through $numOfElements {
+                    &:nth-of-type(#{$i}) ~ .Range__InputContainer__Indicator {
+                        margin-left: #{180 * ($i - 1) + 7px};
+                    }
+                }
+            }
+        }
+
+        &__Line {
+            position: absolute;
+            width: #{($numOfElements * 30px) + (150px * ($numOfElements - 1))};
+            height: 4px;
+            background: var(--Blue-1);
+            z-index: 0;
+        }
+
+        &__Indicator {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--Blue-1);
+            border-radius: 50%;
+            margin-left: 7px;
+            transition: margin 0.3s ease-out;
+            z-index: 2;
+        }
+    }
+
+    &__TextContainer {
+        display: flex;
+        margin-top: 10px;
+        &__Text {
+            width: 100px;
+            color: var(--Black-4);
+            text-align: center;
+            margin-left: 80px;
+            transition: color 0.3s ease-out;
+
+            &:nth-of-type(1) {
+                margin-left: 0px;
+            }
+
+            &__Active {
+                color: var(--Blue-1);
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1365px) {
+    .Range {
+        padding: 10px 0;
+        flex-direction: row-reverse;
+        align-items: center;
+        &__InputContainer {
+            flex-direction: column;
+            margin-left: 10px;
+            &__Circle {
+                margin-left: 0;
+                margin-top: 150px;
+                &:nth-of-type(1) {
+                    margin-top: 0px;
+                }
+                &:checked {
+                    @for $i from 1 through $numOfElements {
+                        &:nth-of-type(#{$i}) ~ .Range__InputContainer__Indicator {
+                            margin-left: 0;
+                            margin-top: #{180 * ($i - 1) + 7px};
+                        }
+                    }
+                }
+            }
+
+            &__Indicator {
+                margin-top: 7px;
+                margin-left: 0;
+            }
+
+            &__Line {
+                height: #{($numOfElements * 30px) + (150px * ($numOfElements - 1))};
+                width: 4px;
+            }
+        }
+
+        &__TextContainer {
+            margin-top: 0;
+            margin-left: 0px;
+            flex-direction: column;
+            align-items: flex-end;
+            &__Text {
+                display: flex;
+                height: 100px;
+                width: fit-content;
+                margin-left: 10px;
+                margin-top: 80px;
+                writing-mode: vertical-rl;
+                align-items: center;
+                justify-content: center;
+
+                &:nth-of-type(1) {
+                    margin-left: 0px;
+                    margin-top: 0px;
+                }
+            }
+        }
+    }
+}

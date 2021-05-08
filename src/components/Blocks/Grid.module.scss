@@ -1,8 +1,10 @@
 .Grid {
     display: flex;
+    display: none;
     position: relative;
     align-items: flex-end;
     justify-content: center;
+    margin-top: 200px; // Remove !!
 }
 
 #Key {
