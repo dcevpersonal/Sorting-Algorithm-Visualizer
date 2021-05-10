@@ -12,7 +12,14 @@ interface animations {
   section: Array<Array<number>>;
 }
 
-function Grid() {
+interface props {
+  startSort: boolean;
+  setSortRunningF(value: boolean): void;
+  sortRunning: boolean;
+  selectAlgorithm: number;
+}
+
+function Grid(props: props) {
   const generateArray = () => {
     const array: Array<number> = [];
     for (let i = 0; i < keysSize; i++) {
@@ -28,41 +35,38 @@ function Grid() {
   };
 
   const startSorting = () => {
+    props.setSortRunningF(true);
+    if (isSorted) {
+      props.setSortRunningF(false);
+    }
+
     setAnim(() => {
       const arr = keys.slice(0);
-      const animations = quickSortIterative(arr);
+      let animations;
+      if (props.selectAlgorithm === 0) {
+        animations = quickSortIterative(arr);
+      } else if (props.selectAlgorithm === 1) {
+        animations = mergeSort(arr);
+      } else if (props.selectAlgorithm === 2) {
+        animations = heapSort(arr);
+      } else if (props.selectAlgorithm === 3) {
+        animations = bubbleSort(arr);
+      } else {
+        animations = quickSortIterative(arr);
+      }
       animations.swap.push([NaN, NaN, NaN, NaN]);
       animations.section.push([0, keysSize]);
       return animations;
     });
 
-    // setAnim(() => {
-    //   const arr = keys.slice(0);
-    //   const animations = mergeSort(arr);
-    //   animations.swap.push([NaN, NaN, NaN, NaN]);
-    //   animations.section.push([0, keysSize]);
-    //   return animations;
-    // });
-    // setAnim(() => {
-    //   const arr = keys.slice(0);
-    //   const animations = heapSort(arr);
-    //   animations.swap.push([NaN, NaN, NaN, NaN]);
-    //   animations.section.push([0, keysSize]);
-    //   return animations;
-    // });
-    // setAnim(() => {
-    //   const arr = keys.slice(0);
-    //   const animations = bubbleSort(arr);
-    //   animations.swap.push([NaN, NaN, NaN, NaN]);
-    //   animations.section.push([0, keysSize]);
-    //   return animations;
-    // });
-
     setIsSorted(true);
   };
 
   const startAnimate = () => {
+    console.log("Animate");
+
     if (currentFrameRef.current > animRef.current.swap.length - 1) {
+      props.setSortRunningF(false);
       return;
     }
 
@@ -89,6 +93,8 @@ function Grid() {
 
     setTimeout(startAnimate, 10);
   };
+
+  const [firstRender, setFirstRender] = useState(false);
 
   const [keysSize, setKeysSize] = useState(100);
 
@@ -125,37 +131,42 @@ function Grid() {
   useEffect(() => {
     if (isSorted) {
       startAnimate();
-      console.log(anim.section);
-      console.log(anim.swap);
     }
   }, [isSorted]);
 
+  useEffect(() => {
+    if (firstRender && !props.sortRunning) {
+      startSorting();
+    }
+    setFirstRender(true);
+  }, [props.startSort]);
+
   return (
     <div className={Style.Grid}>
-      {keys.map((k, i) => {
-        return (
-          <Key
-            key={i}
-            iden={Style.Key}
-            size={
-              i === currentAnim[0]
-                ? currentAnim[1]
-                : i === currentAnim[2]
-                ? currentAnim[3]
-                : keysModif[i]
-            }
-            selected={
-              i === currentAnim[0] || i === currentAnim[2] ? true : false
-            }
-            section={
-              i >= currentSection[0] && i <= currentSection[1] ? true : false
-              // false
-            }
-          />
-        );
-      })}
-      <button onClick={startSorting}>Sort</button>
-      <button onClick={startAnimate}>Anim</button>
+      <div className={Style.Grid_Container}>
+        {keys.map((k, i) => {
+          return (
+            <Key
+              key={i}
+              iden={Style.Key}
+              size={
+                i === currentAnim[0]
+                  ? currentAnim[1]
+                  : i === currentAnim[2]
+                  ? currentAnim[3]
+                  : keysModif[i]
+              }
+              selected={
+                i === currentAnim[0] || i === currentAnim[2] ? true : false
+              }
+              section={
+                i >= currentSection[0] && i <= currentSection[1] ? true : false
+                // false
+              }
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
