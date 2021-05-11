@@ -6,53 +6,135 @@
     height: 50px;
     border-radius: 50%;
     border: none;
-    background: var(--Blue-1);
-    transition: all 0.3s ease-out;
-    transition-property: transform;
+    background: none;
     outline: none;
+    transition: transform 0.1s ease-out;
     align-items: center;
     justify-content: center;
-
-    &::before {
-        position: absolute;
-        content: "";
-        width: 0px;
-        height: 0px;
-        transition: all 0.3s ease-out;
-        border-radius: 50%;
-        background: var(--Black-4-Solid);
-        z-index: 1;
-    }
-
-    &:hover {
-        transform: scale(1.1);
-    }
-
-    &:active {
-        transform: scale(0.9);
-    }
 
     &_Triangle {
         width: 0;
         height: 0;
-        border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
-        border-left: 15px solid var(--Black-5-Solid);
-        z-index: 2;
+        border: 12px solid transparent;
+        border-right: none;
+        border-left-color: var(--Blue-1);
+        transition: border-color 0.3s ease-out;
+    }
+
+    &_Repeat {
+        position: relative;
+        display: flex;
+        width: 28px;
+        height: 28px;
+        border: 3px solid var(--Blue-1);
+        border-right-color: transparent;
+        border-radius: 50%;
+        transition: all 0.3s ease-out;
+        transition-property: border-color, transform;
+        align-items: center;
+        justify-content: center;
+
+        &::after {
+            position: absolute;
+            content: "";
+            border: 10px solid var(--Blue-1);
+            border-right: none;
+            border-top: none;
+            border-left-color: transparent;
+            transition: all 0.3s ease-out;
+            top: -4px;
+            left: 14px;
+        }
+    }
+
+    &_Svg {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+
+        &_Circle {
+            fill: none;
+            stroke-width: 2;
+            stroke: var(--Blue-1);
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            transform-origin: 50% 50%;
+            transform: rotate(-270deg);
+            transition: all 1s ease-out;
+        }
+    }
+    &:active {
+        transform: scale(0.9);
+    }
+
+    &:hover .CircularButton_Svg_Circle {
+        stroke-dashoffset: 0;
+        transform: rotate(-90deg);
+    }
+
+    &:focus .CircularButton_Svg_Circle {
+        stroke-dashoffset: 0;
+        transform: rotate(-90deg);
+    }
+
+    &:active .CircularButton_Svg_Circle {
+        stroke-dashoffset: 0;
+        transform: rotate(-90deg);
+    }
+
+    &:focus .CircularButton_Repeat {
+        transform: rotate(360deg);
+    }
+
+    &:active .CircularButton_Repeat {
+        transform: rotate(360deg);
     }
 
     &__Disabled {
         cursor: not-allowed;
-        background: var(--Black-5);
-
-        &:active,
-        &:hover,
-        &:focus {
+        &:active {
             transform: scale(1);
         }
-        &::before {
-            width: 50px;
-            height: 50px;
+
+        .CircularButton_Triangle {
+            border-left-color: var(--Black-4);
+        }
+
+        .CircularButton_Repeat {
+            border-color: var(--Black-4);
+            border-right-color: transparent;
+            &::after {
+                border-bottom-color: var(--Black-4-Solid);
+            }
+        }
+
+        .CircularButton_Svg {
+            &_Circle {
+                stroke: var(--Black-4);
+                stroke-dashoffset: 0;
+            }
+        }
+
+        &:hover .CircularButton_Svg_Circle {
+            stroke: var(--Black-4);
+            transform: rotate(0deg);
+        }
+        &:focus .CircularButton_Svg_Circle {
+            stroke: var(--Black-4);
+            transform: rotate(0deg);
+        }
+
+        &:active .CircularButton_Svg_Circle {
+            stroke: var(--Black-4);
+            transform: rotate(0deg);
+        }
+
+        &:focus .CircularButton_Repeat {
+            transform: rotate(0deg);
+        }
+
+        &:active .CircularButton_Repeat {
+            transform: rotate(0deg);
         }
     }
 }

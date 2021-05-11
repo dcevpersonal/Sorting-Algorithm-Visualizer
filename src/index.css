@@ -10,6 +10,7 @@ body {
   --Black-4-Solid: #6a6a6a;
   --Black-5: rgba(255, 255, 255, 0.1);
   --Black-5-Solid: #2a2a2a;
+  --White-1: rgba(255, 255, 255, 0.8);
   --Blue-1: #2194f3;
   --Red-1: #f44336;
   box-sizing: border-box;
@@ -28,4 +29,30 @@ body {
   height: 100%;
   background: var(--Black-1);
   overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--Black-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--White-1);
+  transition: background 0.1s ease-out;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--Blue-1);
+}
+
+@media screen and (max-width: 400px) {
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
 }

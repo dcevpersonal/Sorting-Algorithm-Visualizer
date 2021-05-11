@@ -20,9 +20,16 @@ function App() {
     setSelectAlgorithm(value);
   };
 
+  const startGenerateArrayF = () => [
+    setStartGenerateArray(() => {
+      return startGenerateArray ? false : true;
+    }),
+  ];
+
   const [startSort, setStarSort] = useState(false);
   const [selectAlgorithm, setSelectAlgorithm] = useState(0);
   const [sortRunning, setSortRunning] = useState(false);
+  const [startGenerateArray, setStartGenerateArray] = useState(false);
 
   return (
     <div className={Style.App}>
@@ -33,10 +40,15 @@ function App() {
           sortRunning={sortRunning}
           setSortRunningF={setSortRunningF}
           selectAlgorithm={selectAlgorithm}
+          startGenerateArray={startGenerateArray}
         />
       </div>
 
-      <ControlPanel startSorting={startSorting} sortRunning={sortRunning} />
+      <ControlPanel
+        startSorting={startSorting}
+        sortRunning={sortRunning}
+        startGenerateArrayF={startGenerateArrayF}
+      />
     </div>
   );
 }

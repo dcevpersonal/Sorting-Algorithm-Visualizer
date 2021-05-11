@@ -17,6 +17,7 @@ interface props {
   setSortRunningF(value: boolean): void;
   sortRunning: boolean;
   selectAlgorithm: number;
+  startGenerateArray: boolean;
 }
 
 function Grid(props: props) {
@@ -32,6 +33,19 @@ function Grid(props: props) {
       }
     }
     return array;
+  };
+
+  const regenerateArray = () => {
+    setKeys((v) => {
+      setKeysModif(() => {
+        const array = v.slice(0);
+        return array;
+      });
+      return generateArray();
+    });
+
+    setIsSorted(false);
+    setCurrentFrame(0);
   };
 
   const startSorting = () => {
@@ -63,8 +77,6 @@ function Grid(props: props) {
   };
 
   const startAnimate = () => {
-    console.log("Animate");
-
     if (currentFrameRef.current > animRef.current.swap.length - 1) {
       props.setSortRunningF(false);
       return;
@@ -98,7 +110,7 @@ function Grid(props: props) {
 
   const [keysSize, setKeysSize] = useState(100);
 
-  const [keys] = useState(() => {
+  const [keys, setKeys] = useState(() => {
     return generateArray();
   });
 
@@ -140,6 +152,12 @@ function Grid(props: props) {
     }
     setFirstRender(true);
   }, [props.startSort]);
+
+  useEffect(() => {
+    if (!props.sortRunning) {
+      regenerateArray();
+    }
+  }, [props.startGenerateArray]);
 
   return (
     <div className={Style.Grid}>

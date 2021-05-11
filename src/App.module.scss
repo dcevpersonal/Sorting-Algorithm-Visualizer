@@ -12,6 +12,7 @@
     display: flex;
     width: 100%;
     height: calc(100% - 80px);
+    overflow-x: auto;
     flex: 1;
     flex-flow: column;
     flex-direction: column;
@@ -23,7 +24,6 @@
   .App {
     justify-content: flex-start;
     &__Container {
-      overflow-x: scroll;
       flex-direction: row;
     }
   }
