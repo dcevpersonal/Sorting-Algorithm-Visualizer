@@ -6,6 +6,8 @@ import CircularButton from "./Circular-Button";
 interface props {
   startSorting(): void;
   startGenerateArrayF(): void;
+  selectSpeedF(value: number): void;
+  selectSpeed: number;
   sortRunning: boolean;
 }
 
@@ -15,15 +17,22 @@ function ControlPanel(props: props) {
       <CircularButton
         starSorting={props.startSorting}
         sortRunning={props.sortRunning}
-        startGenerateArrayF={props.startGenerateArrayF}
         type={"play"}
+        id={Style.CircularButton}
+      />
+      <CircularButton
+        sortRunning={props.sortRunning}
+        startGenerateArrayF={props.startGenerateArrayF}
+        type={"repeat"}
         id={Style.CircularButton}
       />
       <CircularButton
         starSorting={props.startSorting}
         sortRunning={props.sortRunning}
         startGenerateArrayF={props.startGenerateArrayF}
-        type={"repeat"}
+        type={"speed"}
+        selectSpeed={props.selectSpeed}
+        selectSpeedF={props.selectSpeedF}
         id={Style.CircularButton}
       />
     </div>

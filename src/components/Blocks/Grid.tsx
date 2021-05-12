@@ -17,6 +17,7 @@ interface props {
   setSortRunningF(value: boolean): void;
   sortRunning: boolean;
   selectAlgorithm: number;
+  selectSpeed: number;
   startGenerateArray: boolean;
 }
 
@@ -103,7 +104,7 @@ function Grid(props: props) {
       return frame;
     });
 
-    setTimeout(startAnimate, 10);
+    setTimeout(startAnimate, props.selectSpeed);
   };
 
   const [firstRender, setFirstRender] = useState(false);

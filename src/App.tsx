@@ -20,6 +20,12 @@ function App() {
     setSelectAlgorithm(value);
   };
 
+  const selectSpeedF = (value: number) => {
+    console.log(selectSpeed);
+
+    setSelectSpeed(value);
+  };
+
   const startGenerateArrayF = () => [
     setStartGenerateArray(() => {
       return startGenerateArray ? false : true;
@@ -30,12 +36,14 @@ function App() {
   const [selectAlgorithm, setSelectAlgorithm] = useState(0);
   const [sortRunning, setSortRunning] = useState(false);
   const [startGenerateArray, setStartGenerateArray] = useState(false);
+  const [selectSpeed, setSelectSpeed] = useState(100);
 
   return (
     <div className={Style.App}>
       <div className={Style.App__Container}>
         <DisplayPanel selectAlgorithmF={selectAlgorithmF} />
         <Grid
+          selectSpeed={selectSpeed}
           startSort={startSort}
           sortRunning={sortRunning}
           setSortRunningF={setSortRunningF}
@@ -45,6 +53,8 @@ function App() {
       </div>
 
       <ControlPanel
+        selectSpeedF={selectSpeedF}
+        selectSpeed={selectSpeed}
         startSorting={startSorting}
         sortRunning={sortRunning}
         startGenerateArrayF={startGenerateArrayF}

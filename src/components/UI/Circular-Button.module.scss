@@ -12,7 +12,7 @@
     align-items: center;
     justify-content: center;
 
-    &_Triangle {
+    &_Play {
         width: 0;
         height: 0;
         border: 12px solid transparent;
@@ -45,6 +45,34 @@
             top: -4px;
             left: 14px;
         }
+        &__Active {
+            animation: repeatAnim 0.3s ease-out;
+        }
+    }
+
+    &_Speed {
+        display: flex;
+        position: relative;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-right: none;
+        border-left-color: var(--Blue-1);
+        transition: border-color 0.3s ease-out;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        &::after {
+            position: absolute;
+            content: "";
+            width: 0;
+            height: 0;
+            margin-left: 4px;
+            border: 10px solid transparent;
+            border-right: none;
+            border-left-color: var(--Blue-1);
+            transition: border-color 0.3s ease-out;
+        }
     }
 
     &_Svg {
@@ -67,36 +95,13 @@
         transform: scale(0.9);
     }
 
-    &:hover .CircularButton_Svg_Circle {
-        stroke-dashoffset: 0;
-        transform: rotate(-90deg);
-    }
-
-    &:focus .CircularButton_Svg_Circle {
-        stroke-dashoffset: 0;
-        transform: rotate(-90deg);
-    }
-
-    &:active .CircularButton_Svg_Circle {
-        stroke-dashoffset: 0;
-        transform: rotate(-90deg);
-    }
-
-    &:focus .CircularButton_Repeat {
-        transform: rotate(360deg);
-    }
-
-    &:active .CircularButton_Repeat {
-        transform: rotate(360deg);
-    }
-
     &__Disabled {
         cursor: not-allowed;
         &:active {
             transform: scale(1);
         }
 
-        .CircularButton_Triangle {
+        .CircularButton_Play {
             border-left-color: var(--Black-4);
         }
 
@@ -105,6 +110,13 @@
             border-right-color: transparent;
             &::after {
                 border-bottom-color: var(--Black-4-Solid);
+            }
+        }
+
+        .CircularButton_Speed {
+            border-left-color: var(--Black-4);
+            &::after {
+                border-left-color: var(--Black-4-Solid);
             }
         }
 
@@ -117,24 +129,64 @@
 
         &:hover .CircularButton_Svg_Circle {
             stroke: var(--Black-4);
-            transform: rotate(0deg);
+            transform: rotate(-270deg);
         }
         &:focus .CircularButton_Svg_Circle {
             stroke: var(--Black-4);
-            transform: rotate(0deg);
+            transform: rotate(-270deg);
         }
 
         &:active .CircularButton_Svg_Circle {
             stroke: var(--Black-4);
-            transform: rotate(0deg);
+            transform: rotate(-270deg);
+        }
+    }
+
+    &__Design {
+        &:hover .CircularButton_Svg_Circle {
+            stroke-dashoffset: 0;
+            transform: rotate(-90deg);
         }
 
-        &:focus .CircularButton_Repeat {
-            transform: rotate(0deg);
+        &:focus .CircularButton_Svg_Circle {
+            stroke-dashoffset: 0;
+            transform: rotate(-90deg);
         }
 
-        &:active .CircularButton_Repeat {
-            transform: rotate(0deg);
+        &:active .CircularButton_Svg_Circle {
+            stroke-dashoffset: 0;
+            transform: rotate(-90deg);
         }
+    }
+
+    &__Indicator {
+        .CircularButton_Svg {
+            &_Circle {
+                stroke: transparent;
+            }
+        }
+
+        &:hover .CircularButton_Svg_Circle {
+            transform: rotate(-270deg);
+            stroke: var(--Blue-1);
+        }
+        &:focus .CircularButton_Svg_Circle {
+            transform: rotate(-270deg);
+            stroke: var(--Blue-1);
+        }
+
+        &:active .CircularButton_Svg_Circle {
+            transform: rotate(-270deg);
+            stroke: var(--Blue-1);
+        }
+    }
+}
+
+@keyframes repeatAnim {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
     }
 }
