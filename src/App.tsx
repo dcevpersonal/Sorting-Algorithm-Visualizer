@@ -6,7 +6,8 @@ import DisplayPanel from "./components/UI/Display-Panel";
 import ControlPanel from "./components/UI/Control-Panel";
 
 function App() {
-  // Set Function
+  // Set Functions
+
   const setStarSortF = () => {
     setStarSort(() => {
       return startSort ? false : true;
