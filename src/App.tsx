@@ -21,9 +21,11 @@ function App() {
   };
 
   const selectSpeedF = (value: number) => {
-    console.log(selectSpeed);
-
     setSelectSpeed(value);
+  };
+
+  const selectSizeF = (value: number) => {
+    setSelectSize(value);
   };
 
   const startGenerateArrayF = () => [
@@ -36,7 +38,8 @@ function App() {
   const [selectAlgorithm, setSelectAlgorithm] = useState(0);
   const [sortRunning, setSortRunning] = useState(false);
   const [startGenerateArray, setStartGenerateArray] = useState(false);
-  const [selectSpeed, setSelectSpeed] = useState(100);
+  const [selectSpeed, setSelectSpeed] = useState(10);
+  const [selectSize, setSelectSize] = useState(80);
 
   return (
     <div className={Style.App}>
@@ -48,12 +51,15 @@ function App() {
           sortRunning={sortRunning}
           setSortRunningF={setSortRunningF}
           selectAlgorithm={selectAlgorithm}
+          selectSize={selectSize}
           startGenerateArray={startGenerateArray}
         />
       </div>
 
       <ControlPanel
         selectSpeedF={selectSpeedF}
+        selectSizeF={selectSizeF}
+        selectSize={selectSize}
         selectSpeed={selectSpeed}
         startSorting={startSorting}
         sortRunning={sortRunning}

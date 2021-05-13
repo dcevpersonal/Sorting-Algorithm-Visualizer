@@ -19,7 +19,7 @@ function Key(props: props) {
           : Style.Key
       }
       style={{
-        height: `${props.size * 5}px`,
+        height: `${props.size * 4}px`,
       }}
       id={props.iden}
     ></div>

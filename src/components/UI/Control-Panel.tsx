@@ -7,7 +7,9 @@ interface props {
   startSorting(): void;
   startGenerateArrayF(): void;
   selectSpeedF(value: number): void;
+  selectSizeF(value: number): void;
   selectSpeed: number;
+  selectSize: number;
   sortRunning: boolean;
 }
 
@@ -27,12 +29,17 @@ function ControlPanel(props: props) {
         id={Style.CircularButton}
       />
       <CircularButton
-        starSorting={props.startSorting}
         sortRunning={props.sortRunning}
-        startGenerateArrayF={props.startGenerateArrayF}
         type={"speed"}
         selectSpeed={props.selectSpeed}
         selectSpeedF={props.selectSpeedF}
+        id={Style.CircularButton}
+      />
+      <CircularButton
+        sortRunning={props.sortRunning}
+        type={"size"}
+        selectSizeF={props.selectSizeF}
+        selectSize={props.selectSize}
         id={Style.CircularButton}
       />
     </div>

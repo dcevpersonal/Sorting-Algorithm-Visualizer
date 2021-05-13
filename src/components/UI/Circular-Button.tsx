@@ -5,7 +5,9 @@ interface props {
   starSorting?(): void;
   startGenerateArrayF?(): void;
   selectSpeedF?(value: number): void;
+  selectSizeF?(value: number): void;
   selectSpeed?: number;
+  selectSize?: number;
   sortRunning: boolean;
   type: string;
   id: string;
@@ -43,13 +45,23 @@ function CircularButton(props: props) {
             } else {
               props.selectSpeedF(0);
             }
+          } else if (
+            props.type === "size" &&
+            props.selectSizeF &&
+            props.selectSize !== undefined
+          ) {
+            if (props.selectSize < 150) {
+              props.selectSizeF(props.selectSize + 10);
+            } else {
+              props.selectSizeF(0);
+            }
           }
         }
       }}
       onWheel={(e) => {
         if (
-          props.type === "size" ||
-          (props.type === "speed" && !props.sortRunning)
+          (props.type === "size" || props.type === "speed") &&
+          !props.sortRunning
         ) {
           if (
             props.type === "speed" &&
@@ -69,6 +81,24 @@ function CircularButton(props: props) {
                 props.selectSpeedF(150);
               }
             }
+          } else if (
+            props.type === "size" &&
+            props.selectSizeF &&
+            props.selectSize !== undefined
+          ) {
+            if (e.nativeEvent.deltaY < 0) {
+              if (props.selectSize < 150) {
+                props.selectSizeF(props.selectSize + 10);
+              } else {
+                props.selectSizeF(0);
+              }
+            } else {
+              if (props.selectSize > 0) {
+                props.selectSizeF(props.selectSize - 10);
+              } else {
+                props.selectSizeF(150);
+              }
+            }
           }
         }
       }}
@@ -86,6 +116,12 @@ function CircularButton(props: props) {
                 ? `${
                     props.selectSpeed !== undefined
                       ? props.selectSpeed + 50
+                      : 200
+                  }`
+                : props.type === "size"
+                ? `${
+                    props.selectSize !== undefined
+                      ? 200 - props.selectSize
                       : 200
                   }`
                 : "",
@@ -108,8 +144,13 @@ function CircularButton(props: props) {
       <div
         className={Style.CircularButton_Speed}
         style={{
-          display:
-            props.type === "speed" || props.type === "size" ? "" : "none",
+          display: props.type === "speed" ? "" : "none",
+        }}
+      ></div>
+      <div
+        className={Style.CircularButton_Size}
+        style={{
+          display: props.type === "size" ? "" : "none",
         }}
       ></div>
     </button>

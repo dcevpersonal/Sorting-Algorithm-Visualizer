@@ -18,6 +18,7 @@ interface props {
   sortRunning: boolean;
   selectAlgorithm: number;
   selectSpeed: number;
+  selectSize: number;
   startGenerateArray: boolean;
 }
 
@@ -25,9 +26,9 @@ function Grid(props: props) {
   const generateArray = () => {
     const array: Array<number> = [];
     for (let i = 0; i < keysSize; i++) {
-      let number = Math.floor(Math.random() * keysSize + 10);
+      let number = Math.floor(Math.random() * (keysSize + 10 - 5) + 5);
       if (array.includes(number)) {
-        number = Math.floor(Math.random() * keysSize + 10);
+        number = Math.floor(Math.random() * (keysSize - 10 - 5) + 5);
         i--;
       } else {
         array.push(number);
@@ -37,11 +38,7 @@ function Grid(props: props) {
   };
 
   const regenerateArray = () => {
-    setKeys((v) => {
-      setKeysModif(() => {
-        const array = v.slice(0);
-        return array;
-      });
+    setKeys(() => {
       return generateArray();
     });
 
@@ -109,7 +106,7 @@ function Grid(props: props) {
 
   const [firstRender, setFirstRender] = useState(false);
 
-  const [keysSize, setKeysSize] = useState(100);
+  const [keysSize, setKeysSize] = useState(150);
 
   const [keys, setKeys] = useState(() => {
     return generateArray();
@@ -131,8 +128,8 @@ function Grid(props: props) {
   const animRef = useRef(anim);
   animRef.current = anim;
 
-  const [currentAnim, setCurrentAnim] = useState([0, 0, 0, 0]);
-  const [currentFrame, setCurrentFrame] = useState(0);
+  const [currentAnim, setCurrentAnim] = useState([NaN, NaN, NaN, NaN]);
+  const [currentFrame, setCurrentFrame] = useState(NaN);
 
   const currentFrameRef = useRef(currentFrame);
   currentFrameRef.current = currentFrame;
@@ -160,6 +157,27 @@ function Grid(props: props) {
     }
   }, [props.startGenerateArray]);
 
+  useEffect(() => {
+    if (!props.sortRunning) {
+      setKeysSize(props.selectSize);
+    }
+  }, [props.selectSize]);
+
+  useEffect(() => {
+    if (!props.sortRunning) {
+      regenerateArray();
+    }
+  }, [keysSize]);
+
+  useEffect(() => {
+    setKeysModif(() => {
+      const array = keys.slice(0);
+      return array;
+    });
+  }, [keys]);
+
+  console.log(keysModif);
+
   return (
     <div className={Style.Grid}>
       <div className={Style.Grid_Container}>
@@ -180,7 +198,6 @@ function Grid(props: props) {
               }
               section={
                 i >= currentSection[0] && i <= currentSection[1] ? true : false
-                // false
               }
             />
           );
