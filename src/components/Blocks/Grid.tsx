@@ -7,6 +7,8 @@ import { heapSort } from "../Algorithms/HeapSort";
 import { mergeSort } from "../Algorithms/MergeSort";
 import { bubbleSort } from "../Algorithms/BubbleSort";
 
+// Interfaces
+
 interface animations {
   swap: Array<Array<number>>;
   section: Array<Array<number>>;
@@ -23,6 +25,8 @@ interface props {
 }
 
 function Grid(props: props) {
+  // Generation Functions
+
   const generateArray = () => {
     const array: Array<number> = [];
     for (let i = 0; i < keysSize; i++) {
@@ -41,10 +45,12 @@ function Grid(props: props) {
     setKeys(() => {
       return generateArray();
     });
-
+    setCurrentSection([0, keysSize]);
     setIsSorted(false);
     setCurrentFrame(0);
   };
+
+  // Animation Function Functions
 
   const startSorting = () => {
     props.setSortRunningF(true);
@@ -104,19 +110,20 @@ function Grid(props: props) {
     setTimeout(startAnimate, props.selectSpeed);
   };
 
+  // Render Values
   const [firstRender, setFirstRender] = useState(false);
 
+  // Keys Values
   const [keysSize, setKeysSize] = useState(150);
-
   const [keys, setKeys] = useState(() => {
     return generateArray();
   });
-
   const [keysModif, setKeysModif] = useState(() => {
     const array = keys.slice(0);
     return array;
   });
 
+  // Animations Values
   const [anim, setAnim] = useState(() => {
     const animations: animations = {
       swap: [],
@@ -128,6 +135,7 @@ function Grid(props: props) {
   const animRef = useRef(anim);
   animRef.current = anim;
 
+  // Current Animations Values
   const [currentAnim, setCurrentAnim] = useState([NaN, NaN, NaN, NaN]);
   const [currentFrame, setCurrentFrame] = useState(NaN);
 
@@ -136,8 +144,10 @@ function Grid(props: props) {
 
   const [currentSection, setCurrentSection] = useState([0, keysSize]);
 
+  // Sort Values
   const [isSorted, setIsSorted] = useState(false);
 
+  // Effects
   useEffect(() => {
     if (isSorted) {
       startAnimate();
@@ -175,8 +185,6 @@ function Grid(props: props) {
       return array;
     });
   }, [keys]);
-
-  console.log(keysModif);
 
   return (
     <div className={Style.Grid}>

@@ -1,7 +1,11 @@
+// Interface
+
 interface animations {
   swap: Array<Array<number>>;
   section: Array<Array<number>>;
 }
+
+// Algorithm
 
 const heapify = (
   arr: Array<number>,

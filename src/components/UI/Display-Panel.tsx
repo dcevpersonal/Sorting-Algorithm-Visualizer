@@ -3,6 +3,8 @@ import Style from "./Display-Panel.module.scss";
 
 import Range from "./Range";
 
+// Interface
+
 interface props {
   selectAlgorithmF(value: number): void;
 }

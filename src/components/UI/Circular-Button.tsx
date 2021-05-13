@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Style from "./Circular-Button.module.scss";
 
+// Interface
+
 interface props {
-  starSorting?(): void;
-  startGenerateArrayF?(): void;
+  setStarSortF?(): void;
+  setGenerateArrayF?(): void;
   selectSpeedF?(value: number): void;
   selectSizeF?(value: number): void;
   selectSpeed?: number;
@@ -14,6 +16,7 @@ interface props {
 }
 
 function CircularButton(props: props) {
+  // Animation
   const [repeatAnim, setRepeatAnim] = useState(false);
 
   return (
@@ -27,14 +30,14 @@ function CircularButton(props: props) {
       }
       onClick={() => {
         if (!props.sortRunning) {
-          if (props.type === "repeat" && props.startGenerateArrayF) {
-            props.startGenerateArrayF();
+          if (props.type === "repeat" && props.setGenerateArrayF) {
+            props.setGenerateArrayF();
             setRepeatAnim(true);
             setTimeout(() => {
               setRepeatAnim(false);
             }, 300);
-          } else if (props.type === "play" && props.starSorting) {
-            props.starSorting();
+          } else if (props.type === "play" && props.setStarSortF) {
+            props.setStarSortF();
           } else if (
             props.type === "speed" &&
             props.selectSpeedF &&
@@ -128,7 +131,7 @@ function CircularButton(props: props) {
           }}
         />
       </svg>
-
+      {/* Play */}
       <div
         className={Style.CircularButton_Play}
         style={{ display: props.type === "play" ? "" : "none" }}
@@ -141,12 +144,14 @@ function CircularButton(props: props) {
         }
         style={{ display: props.type === "repeat" ? "" : "none" }}
       ></div>
+      {/* Speed */}
       <div
         className={Style.CircularButton_Speed}
         style={{
           display: props.type === "speed" ? "" : "none",
         }}
       ></div>
+      {/* Size */}
       <div
         className={Style.CircularButton_Size}
         style={{

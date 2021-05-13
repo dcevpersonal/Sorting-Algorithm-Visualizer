@@ -6,15 +6,24 @@ import DisplayPanel from "./components/UI/Display-Panel";
 import ControlPanel from "./components/UI/Control-Panel";
 
 function App() {
-  const startSorting = () => {
+  // Set Function
+  const setStarSortF = () => {
     setStarSort(() => {
       return startSort ? false : true;
     });
   };
 
+  const setGenerateArrayF = () => [
+    setStartGenerateArray(() => {
+      return startGenerateArray ? false : true;
+    }),
+  ];
+
   const setSortRunningF = (value: boolean) => {
     setSortRunning(value);
   };
+
+  // Select Functions
 
   const selectAlgorithmF = (value: number) => {
     setSelectAlgorithm(value);
@@ -28,16 +37,13 @@ function App() {
     setSelectSize(value);
   };
 
-  const startGenerateArrayF = () => [
-    setStartGenerateArray(() => {
-      return startGenerateArray ? false : true;
-    }),
-  ];
-
+  // Set Values
   const [startSort, setStarSort] = useState(false);
-  const [selectAlgorithm, setSelectAlgorithm] = useState(0);
   const [sortRunning, setSortRunning] = useState(false);
   const [startGenerateArray, setStartGenerateArray] = useState(false);
+
+  // Select Values
+  const [selectAlgorithm, setSelectAlgorithm] = useState(0);
   const [selectSpeed, setSelectSpeed] = useState(10);
   const [selectSize, setSelectSize] = useState(80);
 
@@ -61,9 +67,9 @@ function App() {
         selectSizeF={selectSizeF}
         selectSize={selectSize}
         selectSpeed={selectSpeed}
-        startSorting={startSorting}
+        setStarSortF={setStarSortF}
         sortRunning={sortRunning}
-        startGenerateArrayF={startGenerateArrayF}
+        setGenerateArrayF={setGenerateArrayF}
       />
     </div>
   );

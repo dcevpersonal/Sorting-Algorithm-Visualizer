@@ -1,6 +1,8 @@
 import React from "react";
 import Style from "./Key.module.scss";
 
+// Interface
+
 interface props {
   iden: string;
   size: number;

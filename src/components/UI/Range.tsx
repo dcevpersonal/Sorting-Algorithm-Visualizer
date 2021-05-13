@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Style from "./Range.module.scss";
 
+// Interface
+
 interface props {
   numOfElements: Array<string>;
   selectAlgorithmF(value: number): void;

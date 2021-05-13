@@ -3,9 +3,11 @@ import Style from "./Control-Panel.module.scss";
 
 import CircularButton from "./Circular-Button";
 
+// Interface
+
 interface props {
-  startSorting(): void;
-  startGenerateArrayF(): void;
+  setStarSortF(): void;
+  setGenerateArrayF(): void;
   selectSpeedF(value: number): void;
   selectSizeF(value: number): void;
   selectSpeed: number;
@@ -16,18 +18,21 @@ interface props {
 function ControlPanel(props: props) {
   return (
     <div className={Style.ControlPanel}>
+      {/* Play */}
       <CircularButton
-        starSorting={props.startSorting}
+        setStarSortF={props.setStarSortF}
         sortRunning={props.sortRunning}
         type={"play"}
         id={Style.CircularButton}
       />
+      {/* Repeat */}
       <CircularButton
         sortRunning={props.sortRunning}
-        startGenerateArrayF={props.startGenerateArrayF}
+        setGenerateArrayF={props.setGenerateArrayF}
         type={"repeat"}
         id={Style.CircularButton}
       />
+      {/* Speed */}
       <CircularButton
         sortRunning={props.sortRunning}
         type={"speed"}
@@ -35,6 +40,7 @@ function ControlPanel(props: props) {
         selectSpeedF={props.selectSpeedF}
         id={Style.CircularButton}
       />
+      {/* Size */}
       <CircularButton
         sortRunning={props.sortRunning}
         type={"size"}

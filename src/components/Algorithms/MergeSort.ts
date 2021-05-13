@@ -1,7 +1,11 @@
+// Interface
+
 interface animations {
   swap: Array<Array<number>>;
   section: Array<Array<number>>;
 }
+
+// Algorithm
 
 const shiftCheck = (array: Array<number>): number => {
   const shiftValue = array.shift();

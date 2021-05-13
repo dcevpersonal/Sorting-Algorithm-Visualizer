@@ -1,7 +1,11 @@
+// Interface
+
 interface animations {
   swap: Array<Array<number>>;
   section: Array<Array<number>>;
 }
+
+// Algorithm
 
 export const bubbleSort = (arr: Array<number>) => {
   const arrLength = arr.length;
