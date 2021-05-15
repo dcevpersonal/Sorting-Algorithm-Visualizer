@@ -22,20 +22,20 @@ function ControlPanel(props: props) {
       <CircularButton
         setStarSortF={props.setStarSortF}
         sortRunning={props.sortRunning}
-        type={"play"}
+        type={"Play"}
         id={Style.CircularButton}
       />
       {/* Repeat */}
       <CircularButton
         sortRunning={props.sortRunning}
         setGenerateArrayF={props.setGenerateArrayF}
-        type={"repeat"}
+        type={"Repeat"}
         id={Style.CircularButton}
       />
       {/* Speed */}
       <CircularButton
         sortRunning={props.sortRunning}
-        type={"speed"}
+        type={"Speed"}
         selectSpeed={props.selectSpeed}
         selectSpeedF={props.selectSpeedF}
         id={Style.CircularButton}
@@ -43,7 +43,7 @@ function ControlPanel(props: props) {
       {/* Size */}
       <CircularButton
         sortRunning={props.sortRunning}
-        type={"size"}
+        type={"Size"}
         selectSizeF={props.selectSizeF}
         selectSize={props.selectSize}
         id={Style.CircularButton}

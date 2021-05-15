@@ -16,11 +16,24 @@ function Range(props: props) {
       <div className={Style.Range_InputContainer}>
         {props.numOfElements.map((e, i) => {
           return (
+            <label
+              className={Style.Range_InputContainer_Label}
+              key={e + "-" + i}
+              htmlFor={Style.Range_InputContainer_Circle + i}
+            >
+              {e}
+            </label>
+          );
+        })}
+        {props.numOfElements.map((e, i) => {
+          return (
             <input
+              id={Style.Range_InputContainer_Circle + i}
               key={e + "-" + i}
               type="radio"
               className={Style.Range_InputContainer_Circle}
               name="range"
+              title={e}
               onClick={() => {
                 setActiveCircle(i);
                 props.selectAlgorithmF(i);
@@ -37,6 +50,7 @@ function Range(props: props) {
           return (
             <h1
               key={e + "-" + i}
+              title={e}
               className={
                 i === activeCircle
                   ? ` ${Style.Range_TextContainer_Text__Active}

@@ -21,25 +21,27 @@ function CircularButton(props: props) {
 
   return (
     <button
+      aria-label={props.type}
+      title={props.type}
       className={
         props.sortRunning
           ? `${Style.CircularButton} ${Style.CircularButton__Disabled}`
-          : props.type === "speed" || props.type === "size"
+          : props.type === "Speed" || props.type === "Size"
           ? `${Style.CircularButton} ${Style.CircularButton__Indicator}`
           : `${Style.CircularButton} ${Style.CircularButton__Design}`
       }
       onClick={() => {
         if (!props.sortRunning) {
-          if (props.type === "repeat" && props.setGenerateArrayF) {
+          if (props.type === "Repeat" && props.setGenerateArrayF) {
             props.setGenerateArrayF();
             setRepeatAnim(true);
             setTimeout(() => {
               setRepeatAnim(false);
             }, 300);
-          } else if (props.type === "play" && props.setStarSortF) {
+          } else if (props.type === "Play" && props.setStarSortF) {
             props.setStarSortF();
           } else if (
-            props.type === "speed" &&
+            props.type === "Speed" &&
             props.selectSpeedF &&
             props.selectSpeed !== undefined
           ) {
@@ -49,7 +51,7 @@ function CircularButton(props: props) {
               props.selectSpeedF(0);
             }
           } else if (
-            props.type === "size" &&
+            props.type === "Size" &&
             props.selectSizeF &&
             props.selectSize !== undefined
           ) {
@@ -63,11 +65,11 @@ function CircularButton(props: props) {
       }}
       onWheel={(e) => {
         if (
-          (props.type === "size" || props.type === "speed") &&
+          (props.type === "Size" || props.type === "Speed") &&
           !props.sortRunning
         ) {
           if (
-            props.type === "speed" &&
+            props.type === "Speed" &&
             props.selectSpeedF &&
             props.selectSpeed !== undefined
           ) {
@@ -85,7 +87,7 @@ function CircularButton(props: props) {
               }
             }
           } else if (
-            props.type === "size" &&
+            props.type === "Size" &&
             props.selectSizeF &&
             props.selectSize !== undefined
           ) {
@@ -115,13 +117,13 @@ function CircularButton(props: props) {
           className={Style.CircularButton_Svg_Circle}
           style={{
             strokeDashoffset:
-              props.type === "speed"
+              props.type === "Speed"
                 ? `${
                     props.selectSpeed !== undefined
                       ? props.selectSpeed + 50
                       : 200
                   }`
-                : props.type === "size"
+                : props.type === "Size"
                 ? `${
                     props.selectSize !== undefined
                       ? 200 - props.selectSize
@@ -134,7 +136,7 @@ function CircularButton(props: props) {
       {/* Play */}
       <div
         className={Style.CircularButton_Play}
-        style={{ display: props.type === "play" ? "" : "none" }}
+        style={{ display: props.type === "Play" ? "" : "none" }}
       ></div>
       <div
         className={
@@ -142,20 +144,20 @@ function CircularButton(props: props) {
             ? `${Style.CircularButton_Repeat} ${Style.CircularButton_Repeat__Active}`
             : Style.CircularButton_Repeat
         }
-        style={{ display: props.type === "repeat" ? "" : "none" }}
+        style={{ display: props.type === "Repeat" ? "" : "none" }}
       ></div>
       {/* Speed */}
       <div
         className={Style.CircularButton_Speed}
         style={{
-          display: props.type === "speed" ? "" : "none",
+          display: props.type === "Speed" ? "" : "none",
         }}
       ></div>
       {/* Size */}
       <div
         className={Style.CircularButton_Size}
         style={{
-          display: props.type === "size" ? "" : "none",
+          display: props.type === "Size" ? "" : "none",
         }}
       ></div>
     </button>

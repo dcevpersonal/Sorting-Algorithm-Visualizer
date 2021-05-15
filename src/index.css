@@ -6,11 +6,11 @@ body {
   --Black-1: #121212;
   --Black-2: rgba(255, 255, 255, 0.16);
   --Black-3: rgba(255, 255, 255, 0.09);
-  --Black-4: rgba(255, 255, 255, 0.3);
-  --Black-4-Solid: #6a6a6a;
+  --Black-4: rgba(255, 255, 255, 0.6);
+  --Black-4-Solid: #aaaaaa;
   --Black-5: rgba(255, 255, 255, 0.1);
   --Black-5-Solid: #2a2a2a;
-  --White-1: rgba(255, 255, 255, 0.8);
+  --White-1: rgba(255, 255, 255, 0.6);
   --Blue-1: #2194f3;
   --Red-1: #f44336;
   box-sizing: border-box;
@@ -31,11 +31,6 @@ body {
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
 ::-webkit-scrollbar-track {
   background: var(--Black-2);
 }
@@ -50,9 +45,14 @@ body {
   background: var(--Blue-1);
 }
 
-@media screen and (max-width: 400px) {
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+@media (hover: none) {
   ::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
+    width: 0px;
+    height: 0px;
   }
 }

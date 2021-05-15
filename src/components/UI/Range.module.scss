@@ -12,6 +12,12 @@ $numOfElements: 4;
         display: flex;
         align-items: center;
 
+        &_Label {
+            position: absolute;
+            visibility: hidden;
+            z-index: -10;
+        }
+
         &_Circle {
             position: relative;
             width: 30px;
@@ -140,4 +146,7 @@ $numOfElements: 4;
             }
         }
     }
+}
+
+#Range_InputContainer_Circle {
 }
