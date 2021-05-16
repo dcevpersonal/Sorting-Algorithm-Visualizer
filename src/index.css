@@ -50,6 +50,11 @@ body {
   height: 8px;
 }
 
+::selection {
+  background: white;
+  color: black;
+}
+
 @media (hover: none) {
   ::-webkit-scrollbar {
     width: 0px;

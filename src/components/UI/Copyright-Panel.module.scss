@@ -1,0 +1,13 @@
+.CopyrightPanel {
+    display: flex;
+    height: 35px;
+    width: 100%;
+    background: var(--Black-5);
+    align-items: center;
+    justify-content: center;
+
+    &_Text {
+        color: white;
+        font-size: 0.9rem;
+    }
+}

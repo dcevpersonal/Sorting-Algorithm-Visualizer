@@ -4,6 +4,7 @@ import Style from "./App.module.scss";
 import Grid from "./components/Blocks/Grid";
 import DisplayPanel from "./components/UI/Display-Panel";
 import ControlPanel from "./components/UI/Control-Panel";
+import CopyrightPanel from "./components/UI/Copyright-Panel";
 
 function App() {
   // Set Functions
@@ -72,6 +73,7 @@ function App() {
         sortRunning={sortRunning}
         setGenerateArrayF={setGenerateArrayF}
       />
+      <CopyrightPanel />
     </div>
   );
 }
